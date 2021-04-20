@@ -2,7 +2,7 @@ import discord
 import random
 from discord.ext import commands
 
-bot = commands.Bot(command_prefix = '.')
+bot = commands.Bot(command_prefix = 'hana-chan ')
 
 #bot ready message
 
@@ -28,25 +28,33 @@ async def on_member_remove(member):
 async def ping(ctx):
 	await ctx.send(f'MYA-NEE! {round(bot.latency * 1000)}ms')
 
-#bot command nani
+#bot command responses to nani
 
 @bot.command()
-async def nani(ctx, *, question):
+async def nani(ctx):
 	responses = ['MYA-NEE!',
 				 'Issoni asoboio',
 				 '~YAMEROOO!!!!',
 				 'EH?',
 				 'Oi ningen!',
 				 'Bukkorosu!',
-				 'Bukkorostearu!,',
+				 'Bukkorostearu!',
 				 'OI OI OI OI OI!',
 				 'Matte kudasai',
 				 'Nanda kore wa?!',
 				 'Kuso gaki domo',
-				 'Mahou shoujo'
-				 'https://www.youtube.com/watch?v=bydxMFQd3wc']
-	await ctx.send(random.choice(responses)
+				 'Mahou shoujo',
+				 'https://www.youtube.com/watch?v=bydxMFQd3wc',
+				 'https://www.youtube.com/watch?v=an2G10_YnXc',
+				 'https://www.youtube.com/watch?v=SbSf8AAJge0',
+				 'https://www.youtube.com/watch?v=9k6HVsNJu3E',
+				 'https://www.youtube.com/watch?v=d3Xc18kVgco',
+				 'https://www.youtube.com/watch?v=hWmasCJI1fc',
+				 'https://www.youtube.com/watch?v=dkJNeLawexM',
+				 'https://www.youtube.com/watch?v=A3NCtH_u8co']
+	responses = random.choice(responses)
+	await ctx.send(responses)
 
 #token
 
-bot.run('insert bot token')
+bot.run('your token here')
