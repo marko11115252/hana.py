@@ -8,7 +8,13 @@ bot = commands.Bot(command_prefix = 'hana-chan ')
 
 @bot.event
 async def on_ready():
-	print('Hana-chan is ready to play.')
+    for guild in bot.guilds:
+        for channel in guild.text_channels :
+            if str(channel) == "Genshin" :
+                await channel.send('Hana-chan wa peko peko')
+                await channel.send(file=discord.File('connect.gif'))
+        print('Active in {}\n Member Count : {}'.format(guild.name,guild.member_count))
+		print('Hana-chan is ready to play.')
 
 #user join message
 
@@ -34,7 +40,7 @@ async def ping(ctx):
 async def nani(ctx):
 	responses = ['MYA-NEE!',
 				 'Issoni asoboio',
-				 '~YAMEROOO!!!!',
+				 '~YAMEROOO!!!! :rage:',
 				 'EH?',
 				 'Oi ningen!',
 				 'Bukkorosu!',
@@ -51,7 +57,8 @@ async def nani(ctx):
 				 'https://www.youtube.com/watch?v=d3Xc18kVgco',
 				 'https://www.youtube.com/watch?v=hWmasCJI1fc',
 				 'https://www.youtube.com/watch?v=dkJNeLawexM',
-				 'https://www.youtube.com/watch?v=A3NCtH_u8co']
+				 'https://www.youtube.com/watch?v=A3NCtH_u8co',
+				 'MYA-NEEEE :cry:']
 	responses = random.choice(responses)
 	await ctx.send(responses)
 
