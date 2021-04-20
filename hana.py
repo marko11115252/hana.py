@@ -49,4 +49,4 @@ async def nani(ctx, *, question):
 
 #token
 
-bot.run('token')
+bot.run('insert bot token')
