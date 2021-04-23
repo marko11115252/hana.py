@@ -1,5 +1,6 @@
 import discord
 import random
+import asyncio
 from discord.ext import commands
 
 bot = commands.Bot(command_prefix = 'hana-chan ')
@@ -10,11 +11,17 @@ bot = commands.Bot(command_prefix = 'hana-chan ')
 async def on_ready():
     for guild in bot.guilds:
         for channel in guild.text_channels :
-            if str(channel) == "Genshin" :
+            if channel.name == "general" :
                 await channel.send('Hana-chan wa peko peko')
                 await channel.send(file=discord.File('connect.gif'))
-        print('Active in {}\n Member Count : {}'.format(guild.name,guild.member_count))
-		print('Hana-chan is ready to play.')
+print('Hana-chan is ready to play.')
+
+#bot joins channel
+
+@bot.command()
+async def join(ctx):
+    channel = ctx.author.voice.channel
+    voiceClient = await channel.connect()
 
 #user join message
 
@@ -62,6 +69,11 @@ async def nani(ctx):
 	responses = random.choice(responses)
 	await ctx.send(responses)
 
-#token
+#bot plays mp3
 
+	#never got this part to work
+	#the project continues in hana ver2
+
+
+#token
 bot.run('your token here')
