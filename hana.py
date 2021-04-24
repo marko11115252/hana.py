@@ -42,7 +42,7 @@ async def on_member_remove(member):
 async def ping(ctx):
 	await ctx.send(f'MYA-NEE! {round(bot.latency * 1000)}ms')
 
-#bot command responses to nani
+#bot responds to nani
 
 @bot.command()
 async def nani(ctx):
@@ -66,7 +66,28 @@ async def nani(ctx):
 				 'https://www.youtube.com/watch?v=hWmasCJI1fc',
 				 'https://www.youtube.com/watch?v=dkJNeLawexM',
 				 'https://www.youtube.com/watch?v=A3NCtH_u8co',
-				 'MYA-NEEEE :cry:']
+				 'MYA-NEEEE :cry:',
+				 'https://tenor.com/view/wataten-gif-13822468',
+				 'https://tenor.com/view/wataten-watashi-ni-tenshi-ga-maiorita-idea-hinata-ihave-an-idea-gif-16051349',
+				 'https://tenor.com/view/wataten-watashi-ni-tenshi-ga-maiorita-pout-hinata-anime-gif-16058457',
+				 'https://tenor.com/view/mya-nee-wataten-anime-gif-18441081'
+				 ]
+	responses = random.choice(responses)
+	await ctx.send(responses)
+
+#bot sends gif response to food
+
+@bot.command()
+async def food(ctx):
+	responses = ['https://tenor.com/view/melon-pan-wataten-anime-gif-13473060',
+				 'https://tenor.com/view/wataten-gif-13822468',
+				 'https://tenor.com/view/wataten-watashi-ni-tenshi-ga-maiorita-hinata-hana-headpat-gif-16053520',
+				 'https://tenor.com/view/wataten-watashi-ni-tenshi-ga-maiorita-nom-nom-hana-food-gif-16566741',
+				 'https://tenor.com/view/anime-watashinitenshigamaiorita-wataten-watatenanangelflewdowntome-shirosakihana-gif-13356040',
+				 'https://tenor.com/view/wataten-watashi-ni-tenshi-ga-maiorita-hana-stockpiling-anime-gif-16051494',
+				 'https://tenor.com/view/wataten-hana-hana-shirosaki-relaxing-drinking-gif-16042275',
+				 'https://tenor.com/view/ice-hana-chan-gif-19370267'
+				 ]
 	responses = random.choice(responses)
 	await ctx.send(responses)
 
@@ -81,12 +102,25 @@ async def sad(ctx):
 		if voice_channel != None:
 			channel = voice_channel.channel
 			vc = await channel.connect()
-			vc.play(discord.FFmpegPCMAudio('sad1.mp3'))
+			sadaudio = ['sad1.mp3', 'sad2.mp3']
+			sadaudio = random.choice(sadaudio)
+			vc.play(discord.FFmpegPCMAudio(sadaudio))
 			while vc.is_playing():
 				await asyncio.sleep(.1)
 			await vc.disconnect()
 		else:
 			await ctx.send(str(ctx.author.name) + " wa doko da?")
+
+
+#bot welcomes new memeber on server
+
+@bot.event
+async def on_member_join(member):
+	guild = member.guild
+	if guild.system_channel != None:
+		to_send = (f'Kon\'nichiwa {member.name}, issho ni asobou!')
+		await guild.system_channel.send(to_send)
+
 
 #token
 
