@@ -2,6 +2,7 @@ import discord
 import random
 import asyncio
 from discord.ext import commands
+from discord.ext.commands import Bot
 
 bot = commands.Bot(command_prefix = 'hana-chan ')
 
@@ -9,19 +10,19 @@ bot = commands.Bot(command_prefix = 'hana-chan ')
 
 @bot.event
 async def on_ready():
-    for guild in bot.guilds:
-        for channel in guild.text_channels :
-            if channel.name == "general" :
-                await channel.send('Hana-chan wa peko peko')
-                await channel.send(file=discord.File('connect.gif'))
+	for guild in bot.guilds:
+		for channel in guild.text_channels :
+			if channel.name == "general" :
+				await channel.send('Hana-chan wa peko peko')
+				await channel.send(file=discord.File('connect.gif'))
 print('Hana-chan is ready to play.')
 
 #bot joins channel
 
 @bot.command()
 async def join(ctx):
-    channel = ctx.author.voice.channel
-    voiceClient = await channel.connect()
+	channel = ctx.author.voice.channel
+	voiceClient = await channel.connect()
 
 #user join message
 
@@ -71,9 +72,24 @@ async def nani(ctx):
 
 #bot plays mp3
 
-	#never got this part to work
-	#the project continues in hana ver2
 
+@bot.command()
+async def sad(ctx):
+		# Gets voice channel of message author
+		voice_channel = ctx.author.voice
+		channel = None
+		if voice_channel != None:
+			channel = voice_channel.channel
+			vc = await channel.connect()
+			vc.play(discord.FFmpegPCMAudio('sad1.mp3'))
+			# Sleep while audio is playing.
+			while vc.is_playing():
+				sleep(.1)
+			await vc.disconnect()
+		else:
+			await ctx.send(str(ctx.author.name) + "wa doko da?")
+		# Delete command after the audio is done playing.
+		await ctx.message.delete()
 
 #token
 bot.run('your token here')
