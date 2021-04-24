@@ -96,7 +96,6 @@ async def food(ctx):
 
 @bot.command()
 async def sad(ctx):
-		# Gets voice channel of message author
 		voice_channel = ctx.author.voice
 		channel = None
 		if voice_channel != None:
