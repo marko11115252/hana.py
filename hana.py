@@ -82,14 +82,12 @@ async def sad(ctx):
 			channel = voice_channel.channel
 			vc = await channel.connect()
 			vc.play(discord.FFmpegPCMAudio('sad1.mp3'))
-			# Sleep while audio is playing.
 			while vc.is_playing():
-				sleep(.1)
+				await asyncio.sleep(.1)
 			await vc.disconnect()
 		else:
-			await ctx.send(str(ctx.author.name) + "wa doko da?")
-		# Delete command after the audio is done playing.
-		await ctx.message.delete()
+			await ctx.send(str(ctx.author.name) + " wa doko da?")
 
 #token
+
 bot.run('your token here')
